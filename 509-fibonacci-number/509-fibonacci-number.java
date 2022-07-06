@@ -1,6 +1,8 @@
 class Solution {
+    Map<Integer, Integer> cache;
+    
     public int fib(int n) {
-        
+        this.cache = new HashMap<>(Map.of(0, 0, 1, 1));
         return fibTopDownNoExtraSpace(n);
     }
     
@@ -34,6 +36,16 @@ class Solution {
         if(n <= 1) return n;
         
         return fibTopDownNoExtraSpace(n-1) + fibTopDownNoExtraSpace(n-2);
+    }
+    
+    public int fibTopDownExtraSpace(int n) {
+        
+        
+        if(cache.containsKey(n)) return cache.get(n);
+        
+        cache.put(n, fibTopDownExtraSpace(n-1) + fibTopDownExtraSpace(n-2));
+        return cache.get(n);
+        
     }
     
 }
