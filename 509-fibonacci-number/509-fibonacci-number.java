@@ -4,7 +4,7 @@ class Solution {
         return fibTopDownNoExtraSpace(n);
     }
     
-    public int fibTopDownExtraSpace(int n) {
+    public int fibBottomUpExtraSpace(int n) {
         if(n <= 1) return n;
         
         int[] fib = new int[n+1];
@@ -16,7 +16,7 @@ class Solution {
         return fib[n];
     }
     
-    public int fibTopDownNoExtraSpace(int n) {
+    public int fibBottomUpoExtraSpace(int n) {
         if(n <= 1) return n;
         
         int prev_2 = 0, prev_1 = 1, curr = 0;
@@ -28,4 +28,12 @@ class Solution {
         
         return curr;
     }
+    
+    
+    public int fibTopDownNoExtraSpace(int n) {
+        if(n <= 1) return n;
+        
+        return fibTopDownNoExtraSpace(n-1) + fibTopDownNoExtraSpace(n-2);
+    }
+    
 }
