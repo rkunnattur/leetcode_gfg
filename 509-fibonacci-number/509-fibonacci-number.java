@@ -3,7 +3,7 @@ class Solution {
     
     public int fib(int n) {
         this.cache = new HashMap<>(Map.of(0, 0, 1, 1));
-        return fibTopDownNoExtraSpace(n);
+        return fibTopDownExtraSpace(n);
     }
     
     public int fibBottomUpExtraSpace(int n) {
