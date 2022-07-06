@@ -1,8 +1,9 @@
 class Solution {
     public int fib(int n) {
         
-        return fibTopDownExtraSpace(n);
+        return fibTopDownNoExtraSpace(n);
     }
+    
     public int fibTopDownExtraSpace(int n) {
         if(n <= 1) return n;
         
@@ -13,5 +14,18 @@ class Solution {
         }
         
         return fib[n];
+    }
+    
+    public int fibTopDownNoExtraSpace(int n) {
+        if(n <= 1) return n;
+        
+        int prev_2 = 0, prev_1 = 1, curr = 0;
+        for(int i = 2; i <= n; i++) {   
+            curr = prev_1 + prev_2;
+            prev_2 = prev_1;
+            prev_1 = curr;
+        }
+        
+        return curr;
     }
 }
