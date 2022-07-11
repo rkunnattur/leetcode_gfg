@@ -2,6 +2,7 @@ class MinStack {
 
     Stack<Long> st;
     int currMin;
+    long prevMin;
     public MinStack() {
         st = new Stack<>();
     }
@@ -15,8 +16,8 @@ class MinStack {
                 st.push(1L*val);
             } else {
                 // val to push on stack - 2*x - currMin < x
-                long newVal = ((1L*val) << 1L) - 1L*currMin;
-                st.push(newVal);
+                st.push(((1L*val) << 1L) - 1L*currMin);
+                prevMin = currMin;
                 currMin = val;
             }
             
@@ -29,8 +30,7 @@ class MinStack {
                 st.pop();
             } else {
                  // prevMin = 2*currMin - st.top()
-                long prevMin = ((1L*currMin) << 1L) - 1L*st.peek();
-                currMin = (int)prevMin;
+                currMin = (int) (1L * (currMin << 1) - st.peek());
                 st.pop();
             }
         }
@@ -38,7 +38,9 @@ class MinStack {
     
     public int top() {
         if(st.peek() > 1L*currMin) return st.peek().intValue();
-        long prevMin = ((1L*currMin) << 1L) - 1L*st.peek();
+    
+        // compute prev min
+        long prevMin = ((1L*currMin) << 1L) - st.peek();
         return (int) ((st.peek()+prevMin) >> 1L);
     }
     
