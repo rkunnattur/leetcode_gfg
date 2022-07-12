@@ -12,8 +12,8 @@ class Solution {
         PriorityQueue<Integer> pq = new PriorityQueue<>((o1, o2) -> {
             return freqMap.get(o1) - freqMap.get(o2);
         });
-        for(int val: freqMap.keySet()) {
-            
+        
+        for(int val: freqMap.keySet()) {      
             if(pq.size() >= k && freqMap.get(val) >= freqMap.get(pq.peek())) {
                 pq.poll();
                 pq.offer(val);
