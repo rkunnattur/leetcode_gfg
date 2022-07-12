@@ -20,6 +20,6 @@ class Solution {
             } else if(pq.size() < k) pq.offer(val);
         }
         
-        return pq.stream().mapToInt(n -> n).toArray();
+        return pq.parallelStream().mapToInt(n -> n).toArray();
     }
 }
