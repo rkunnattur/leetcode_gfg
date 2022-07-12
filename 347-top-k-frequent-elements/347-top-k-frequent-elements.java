@@ -14,7 +14,7 @@ class Solution {
         });
         
         for(int val: freqMap.keySet()) {      
-            if(pq.size() >= k && freqMap.get(val) >= freqMap.get(pq.peek())) {
+            if(pq.size() >= k && freqMap.get(val) > freqMap.get(pq.peek())) {
                 pq.poll();
                 pq.offer(val);
             } else if(pq.size() < k) pq.offer(val);
