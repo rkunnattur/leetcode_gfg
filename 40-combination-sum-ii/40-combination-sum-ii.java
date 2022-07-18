@@ -20,7 +20,6 @@ class Solution {
 
         for (int nextCurr = curr; nextCurr < candidates.length; ++nextCurr) {
             if (nextCurr > curr && candidates[nextCurr] == candidates[nextCurr - 1]) {
-                System.out.printf("nextCurr: %d; curr: %d; candidates[nextCurr]: %d; candidates[curr]: %d; \n", curr, nextCurr, candidates[nextCurr], candidates[curr]);
                 continue;
             }
 
