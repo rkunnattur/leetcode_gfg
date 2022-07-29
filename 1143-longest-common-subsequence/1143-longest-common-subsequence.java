@@ -8,21 +8,21 @@ LCS(i, j) = maximum (LCS(i-1, j-1] + 1,       //if(A[i] = B[j])
 class Solution {
     public int longestCommonSubsequence(String text1, String text2) {
         
-        return lcsI(text1, text2);
+        return longestCommonSubsequenceR(text1, text2);
     }
     
     public int longestCommonSubsequenceR(String s1, String s2) {
         int n = s1.length(), m = s2.length();
-        int[][] lcs = new int[n][m];
-        return lcsR(s1, s2, n-1, m-1, lcs);
+        int[][] lcs = new int[n+1][m+1];
+        return lcsR(s1, s2, n, m, lcs);
     }
     
     public int lcsR(String s1, String s2, int i, int j, int[][] lcs) {
-        if(i == -1 || j == -1) return 0;
+        if(i == 0 || j == 0) return 0;
         
         if(lcs[i][j] != 0) return lcs[i][j];
         
-        if(s1.charAt(i) == s2.charAt(j))
+        if(s1.charAt(i-1) == s2.charAt(j-1))
             lcs[i][j] = 1 + lcsR(s1, s2, i-1, j-1, lcs);
         else 
             lcs[i][j] =  Math.max(lcsR(s1, s2, i, j-1, lcs), lcsR(s1, s2, i-1, j, lcs));
