@@ -1,7 +1,7 @@
 class Solution {
     public int uniquePaths(int m, int n) {
         
-        return uniquePathsI(m, n);
+        return uniquePathsIOpt1(m, n);
     }
     
     public int uniquePathsI(int n, int m) {
