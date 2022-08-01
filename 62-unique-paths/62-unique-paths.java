@@ -4,31 +4,70 @@ class Solution {
         return uniquePathsI(m, n);
     }
     
-    public int uniquePathsI(int m, int n) {
+    public int uniquePathsI(int n, int m) {
         
-        int[][] dp = new int[1][m];
+        int[][] dp = new int[n+1][m+1];
 
-        /**
-         * Step 1:
-         * fill first row and first column with value 1 as there can be only 1 way to
-         * reach those cells.
-         */
-        for (int i = 0; i < 1; i++) {
-            dp[i][0] = 1;
+        for (int r = 0; r < n; r++) {
+            dp[r][0] = 1;
         }
-        for (int j = 0; j < m; j++) {
-            dp[0][j] = 1;
+        for (int c = 0; c < m; c++) {
+            dp[0][c] = 1;
         }
 
-        /* Step 2: */
-        for (int i = 1; i < n; i++) {
-            for (int j = 1; j < m; j++) {
-                // take same element + left element
-                dp[0][j] = dp[0][j] + dp[0][j - 1];
+        for (int r = 1; r <= n; r++) {
+            for (int c = 1; c <= m; c++) {
+                dp[r][c] = dp[r-1][c] + dp[r][c - 1];
             }
         }
 
-        return dp[0][m - 1];
+        return dp[n-1][m - 1];
+        
+    }
+    
+    public int uniquePathsIOpt1(int n, int m) {
+        
+        int[][] dp = new int[2][m];
+
+        for (int r = 0; r < 2 && r < n; r++) {
+            dp[r][0] = 1;
+        }
+        for (int c = 0; c < m; c++) {
+            dp[0][c] = 1;
+        }
+
+        for (int r = 1; r < n; r++) {
+            for (int c = 0; c < m; c++) {
+                dp[r%2][c] 
+                    = dp[(r-1) %2][c];
+                if(c >= 1)dp[r%2][c] += dp[r%2][c - 1];
+            }
+        }
+
+        return dp[(n-1)%2][m - 1];
+        
+    }
+    
+    public int uniquePathsIOpt2(int n, int m) {
+        
+        int[][] dp = new int[2][m];
+
+        for (int r = 0; r < 2 && r < n; r++) {
+            dp[r][0] = 1;
+        }
+        for (int c = 0; c < m; c++) {
+            dp[0][c] = 1;
+        }
+
+        for (int r = 1; r < n; r++) {
+            for (int c = 0; c < m; c++) {
+                dp[r%2][c] 
+                    = dp[(r-1) %2][c];
+                if(c >= 1)dp[r%2][c] += dp[r%2][c - 1];
+            }
+        }
+
+        return dp[(n-1)%2][m - 1];
         
     }
 }
