@@ -48,19 +48,19 @@ class Solution {
         
     }
     
-    public int uniquePathsIOpt2(int n, int m) {
+    public int uniquePathsIOpt2(int rowLen, int colLen) {
         
-        int[] dp = new int[m];
+        int[] dp = new int[colLen];
 
         Arrays.fill(dp, 1);
 
-        for (int r = 1; r < n; r++) {
-            for (int c = 1; c < m; c++) {
+        for (int r = 1; r < rowLen; r++) {
+            for (int c = 1; c < colLen; c++) {
                 dp[c] = dp[c-1] + dp[c];
             }
         }
 
-        return dp[m-1];
+        return dp[colLen-1];
         
     }
 }
