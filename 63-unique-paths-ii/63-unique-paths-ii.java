@@ -4,6 +4,7 @@ class Solution {
         return uniquePathsWithObstaclesIOpt1(obstacleGrid);
     }
     
+    // wiith extra space, of 
     public int uniquePathWithObstaclesI(int[][] obstacleGrid) {
         int rowLen = obstacleGrid.length, colLen = obstacleGrid[0].length;
         int[][] paths = new int[rowLen][colLen];
@@ -36,16 +37,16 @@ class Solution {
             obstacleGrid[0][0] ^= 1;
         
             for(int r = 1; r<rowLen; r++){
-                obstacleGrid[r][0] = obstacleGrid[r][0] == 1 ? 0 : obstacleGrid[r-1][0];
+                obstacleGrid[r][0] = (obstacleGrid[r][0] == 1) ? 0 : obstacleGrid[r-1][0];
             }
             
             for(int c = 1; c<colLen; c++){
-                obstacleGrid[0][c] = obstacleGrid[0][c] == 1 ? 0 : obstacleGrid[0][c-1] ;
+                obstacleGrid[0][c] = (obstacleGrid[0][c] == 1) ? 0 : obstacleGrid[0][c-1];
             }
         
             for(int r = 1; r < rowLen; r++){
                 for(int c = 1; c < colLen; c++){
-                    obstacleGrid[r][c] = (obstacleGrid[r][c] == 1) ? 0 : obstacleGrid[r-1][c]+obstacleGrid[r][c-1];
+                    obstacleGrid[r][c] = (obstacleGrid[r][c] == 1) ? 0 : obstacleGrid[r-1][c] + obstacleGrid[r][c-1];
                 }
             }
         
