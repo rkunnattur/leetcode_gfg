@@ -50,24 +50,17 @@ class Solution {
     
     public int uniquePathsIOpt2(int n, int m) {
         
-        int[][] dp = new int[2][m];
+        int[] dp = new int[m];
 
-        for (int r = 0; r < 2 && r < n; r++) {
-            dp[r][0] = 1;
-        }
-        for (int c = 0; c < m; c++) {
-            dp[0][c] = 1;
-        }
+        Arrays.fill(dp, 1);
 
         for (int r = 1; r < n; r++) {
-            for (int c = 0; c < m; c++) {
-                dp[r%2][c] 
-                    = dp[(r-1) %2][c];
-                if(c >= 1)dp[r%2][c] += dp[r%2][c - 1];
+            for (int c = 1; c < m; c++) {
+                dp[c] = dp[c-1] + dp[c];
             }
         }
 
-        return dp[(n-1)%2][m - 1];
+        return dp[m-1];
         
     }
 }
