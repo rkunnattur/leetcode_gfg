@@ -4,6 +4,7 @@ class Solution {
         return uniquePathsIOpt2(m, n);
     }
     
+    // with extra space, of size row length x column length
     public int uniquePathsI(int n, int m) {
         
         int[][] dp = new int[n+1][m+1];
@@ -25,6 +26,8 @@ class Solution {
         
     }
     
+    
+    // with space optimization to 2D array, of size 2 x column length
     public int uniquePathsIOpt1(int n, int m) {
         
         int[][] dp = new int[2][m];
@@ -48,6 +51,7 @@ class Solution {
         
     }
     
+    // with space optimization to 1D array, of size 1 x column length
     public int uniquePathsIOpt2(int rowLen, int colLen) {
         
         int[] dp = new int[colLen];
