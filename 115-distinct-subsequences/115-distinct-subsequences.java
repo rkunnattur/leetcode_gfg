@@ -2,8 +2,8 @@ class Solution {
     Integer[][] uniqueWays;
     public int numDistinct(String s, String t) {
         uniqueWays = new Integer[s.length()+1][t.length()+1];
-        
-        return computeUniqueWays(s, t, s.length(), t.length());
+        return numDistinctI(s, t);
+        //return computeUniqueWays(s, t, s.length(), t.length());
     }
     
     public int computeUniqueWays(String s, String p, int a, int b) {
@@ -24,4 +24,28 @@ class Solution {
         
         return ways;
     }
+    
+    public int numDistinctI(String S, String T) {
+	int sl = S.length();
+	int tl = T.length();
+	
+    if(sl < tl) return 0;
+        
+	int [][] dp = new int[tl+1][sl+1];
+        
+	Arrays.fill(dp[0], 1);
+	
+	for(int t=1; t<=tl; ++t){
+		
+		for(int s=1; s<=sl; ++s){
+			if(T.charAt(t-1) != S.charAt(s-1)){
+				dp[t][s] = dp[t][s-1];
+			}else{
+				dp[t][s] = dp[t][s-1] + dp[t-1][s-1];
+			}
+		}	
+	}
+	
+	return dp[tl][sl];
+}
 }
