@@ -35,14 +35,13 @@ class Solution {
         
 	Arrays.fill(dp[0], 1);
 	
-	for(int t=1; t<=tl; ++t){
-		
+	for(int t=1; t<=tl; ++t){		
 		for(int s=1; s<=sl; ++s){
-			if(T.charAt(t-1) != S.charAt(s-1)){
-				dp[t][s] = dp[t][s-1];
-			}else{
-				dp[t][s] = dp[t][s-1] + dp[t-1][s-1];
+			if(T.charAt(t-1) == S.charAt(s-1)){
+				dp[t][s] = dp[t-1][s-1];
 			}
+            
+			dp[t][s] += dp[t][s-1];
 		}	
 	}
 	
