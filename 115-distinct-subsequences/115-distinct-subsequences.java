@@ -7,8 +7,8 @@ class Solution {
     }
     
     public int computeUniqueWays(String s, String p, int a, int b) {
-        if(a >= 0 && b == 0) return 1;
-        if(a == 0 && b > 0) return 0;
+        if(b == 0) return 1;
+        if(a < b) return 0;
         
         if(uniqueWays[a][b] != null) return uniqueWays[a][b];
         
