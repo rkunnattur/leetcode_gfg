@@ -1,5 +1,6 @@
 class Solution {
     
+    // iterative approach with sapce opt to 1D array
     public int coinChange(int[] coins, int amount) {
         int len = coins.length;
         int[] noOfCoins = new int[amount+1];
@@ -17,6 +18,7 @@ class Solution {
         return noOfCoins[amount] > amount ? -1 : noOfCoins[amount];
     }
     
+    // iterative approach with extra space
     public int coinChangeI(int[] coins, int amount) {
         int len = coins.length;
         int[][] noOfCoins=new int[len+1][amount+1];
