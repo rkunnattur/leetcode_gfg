@@ -35,6 +35,5 @@ class Solution {
         }
         
         return noOfCoins[len][amount] > amount ? -1 : noOfCoins[len][amount];
-    
     }
 }
