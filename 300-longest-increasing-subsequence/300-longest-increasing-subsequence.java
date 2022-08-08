@@ -1,7 +1,7 @@
 class Solution {
     public int lengthOfLIS(int[] nums) {
         
-        return computeLISIOpt(nums);
+        return computeLISI(nums);
     }
     
     public int computeLISI(int[] nums) {
