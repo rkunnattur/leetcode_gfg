@@ -1,7 +1,7 @@
 class Solution {
     public int lengthOfLIS(int[] nums) {
         
-        return computeLISI(nums);
+        return computeLISIOpt(nums);
     }
     
     public int computeLISI(int[] nums) {
@@ -16,7 +16,21 @@ class Solution {
             lis[i]++;
             max = Math.max(max, lis[i]);
         }
-        System.out.printf("lis: %s\t", Arrays.toString(lis));
         return max;
+    }
+    
+    public int computeLISIOpt(int[] nums) {
+        int n = nums.length, len = 0;
+        int[] lis = new int[n];
+        
+        for(int num: nums) {
+            int i = Arrays.binarySearch(lis, 0, len, num);
+            if(i < 0) i = - (i+1);
+            
+            lis[i] = num;
+            if(i == len) len++;
+        }
+        
+        return len;
     }
 }
