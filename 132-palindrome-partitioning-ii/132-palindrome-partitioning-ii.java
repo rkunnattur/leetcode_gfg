@@ -10,7 +10,7 @@ class Solution {
         int[] mincut = new int[n];
         /* iterates the full string */
         for(int i = 0; i < n; i++) { // col traversal - right index o string
-            min = i; // Max number of cuts is i for string length i+1
+            mincut[i] = i; // Max number of cuts is i for string length i+1
             /* iterates string till ith index for palidrome check */
             for(int j = 0; j <= i; j++) { // row traversal - left index off string
                     /*  
@@ -32,11 +32,11 @@ class Solution {
                         j == 0 because String from j to i is a palindrome and it starts from first character so means no cuts needed 
                         Else I need a cut at jth location and it will be cuts encountered till j-1 + 1
                     */
-                    min = j == 0 ? 0 : Math.min(min, mincut[j-1] + 1);         
+                    mincut[i] = j == 0 ? 0 : Math.min(mincut[i], mincut[j-1] + 1);         
                 }
             }
             
-            mincut[i] = min;
+            //mincut[i] = min;
         }
         
         return mincut[n-1];
@@ -52,20 +52,27 @@ class Solution {
         for(int i = n-1; i >= 0; i--) { 
             min = n; 
             
-            for(int j = i; j >= 0; j--) { 
+            for(int j = i; j < n; j++) { 
                 
-                if(s.charAt(j) == s.charAt(i) && (i - j < 3 || isPalindrome[j-1][i+1])) {
+                if(s.charAt(j) == s.charAt(i)  && (j - i < 2 || 
+                       isPalindrome[i+1][j-1])) {
                     
                     
-                    isPalindrome[j][i] = true;
+                    isPalindrome[i][j] = true;
                     
-                    min = j == n-1 ? 0 : Math.min(min, mincut[j] + 1);         
+                    if(j==n-1)
+                           mincut[i]=0;
+                       else if(mincut[j+1]+1<mincut[i])
+                           mincut[i]=mincut[j+1]+1;
+                    
+                   // min = j == n-1 ? 0 : Math.min(min, mincut[j-1] + 1);         
                 }
             }
             
-            mincut[i] = min;
+            //mincut[i] = min;
         }
         
-        return mincut[n-1];
+        System.out.printf(Arrays.toString(mincut));
+        return mincut[0];
     }
 }
