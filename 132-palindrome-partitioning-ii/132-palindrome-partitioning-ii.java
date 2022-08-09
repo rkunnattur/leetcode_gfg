@@ -16,7 +16,7 @@ class Solution {
                     /*  
                     Why i - j < 3  ?
                         1. String of length 1 is always palindrome so no need to check in boolean table
-                        2. String of length 2 is palindrome if Ci == Cj which is already checked in first part so no need to check again
+                        2. String of length 2 is palindrome if charAt(i) == Cj which is already checked in first part so no need to check again
                         3. String of length 3 is palindrome if Ci == Cj which is already checked in first part and Ci+1 and Cj-1 is same character which is always a palindrome
             
                         If String length >=4, then check if Ci == Cj and if they are equal check if String[j+1 .. i-1] is a palindrome from the boolean table
@@ -33,6 +33,33 @@ class Solution {
                         Else I need a cut at jth location and it will be cuts encountered till j-1 + 1
                     */
                     min = j == 0 ? 0 : Math.min(min, mincut[j-1] + 1);         
+                }
+            }
+            
+            mincut[i] = min;
+        }
+        
+        return mincut[n-1];
+    }
+    
+    public int minCut2(String s) {
+        int n = s.length(), min = 0;
+        
+        boolean[][] isPalindrome = new boolean[n][n];
+        
+        int[] mincut = new int[n];
+       
+        for(int i = n-1; i >= 0; i--) { 
+            min = n+1; 
+            
+            for(int j = i; j >= 0; j--) { 
+                
+                if(s.charAt(j) == s.charAt(i) && (i - j < 3 || isPalindrome[j-1][i+1])) {
+                    
+                    
+                    isPalindrome[j][i] = true;
+                    
+                    min = j == n-1 ? 0 : Math.min(min, mincut[j] + 1);         
                 }
             }
             
