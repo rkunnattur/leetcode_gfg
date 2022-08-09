@@ -9,10 +9,10 @@ class Solution {
         */
         int[] mincut = new int[n];
         /* iterates the full string */
-        for(int i = 0; i < n; i++) { // col traversal
+        for(int i = 0; i < n; i++) { // col traversal - right index o string
             min = i; // Max number of cuts is i for string length i+1
             /* iterates string till ith index for palidrome check */
-            for(int j = 0; j <= i; j++) { // row traversal
+            for(int j = 0; j <= i; j++) { // row traversal - left index off string
                     /*  
                     Why i - j < 3  ?
                         1. String of length 1 is always palindrome so no need to check in boolean table
