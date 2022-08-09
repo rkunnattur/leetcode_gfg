@@ -50,7 +50,7 @@ class Solution {
         int[] mincut = new int[n];
        
         for(int i = n-1; i >= 0; i--) { 
-            min = n+1; 
+            min = n; 
             
             for(int j = i; j >= 0; j--) { 
                 
