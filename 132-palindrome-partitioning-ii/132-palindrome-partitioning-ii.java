@@ -35,8 +35,6 @@ class Solution {
                     mincut[i] = j == 0 ? 0 : Math.min(mincut[i], mincut[j-1] + 1);         
                 }
             }
-            
-            //mincut[i] = min;
         }
         
         return mincut[n-1];
