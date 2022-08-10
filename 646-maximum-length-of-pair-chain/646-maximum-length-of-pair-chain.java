@@ -1,24 +1,25 @@
 class Solution {
     
-    public int findLongestChain2(int[][] pairs) {
-        Arrays.sort(pairs, (a, b) -> a[0] - b[0]);
-        int N = pairs.length;
-        int[] dp = new int[N];
-        Arrays.fill(dp, 1);
+    // TC: O(NLogN)
+    public int findLongestChain(int[][] pairs) {
+        Arrays.sort(pairs, (o1, o2) -> {
+            return o1[1] != o2[1] ? o1[1] - o2[1] : o1[0] - o2[0];
+        });
+        
+        int longestChain = 0, curr = Integer.MIN_VALUE;
 
-        for (int j = 1; j < N; ++j) {
-            for (int i = 0; i < j; ++i) {
-                if (pairs[i][1] < pairs[j][0])
-                    dp[j] = Math.max(dp[j], dp[i] + 1);
+        for (int[] p: pairs) {
+            if(curr < p[0]) {
+                curr = p[1];
+                longestChain += 1;
             }
         }
-
-        int ans = 0;
-        for (int x: dp) if (x > ans) ans = x;
-        return ans;
+        
+        return longestChain;
     }
     
-    public int findLongestChain(int[][] pairs) {
+    // TC: O(N^2)
+    public int findLongestChain2(int[][] pairs) {
         int len = pairs.length, longestChain = 0;
         Arrays.sort(pairs, (o1, o2) -> {
             return o1[0] - o2[0];
