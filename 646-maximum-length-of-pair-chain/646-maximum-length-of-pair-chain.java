@@ -19,7 +19,7 @@ class Solution {
     }
     
     public int findLongestChain(int[][] pairs) {
-        int len = pairs.length, longestChain = 0, currLongestChain = 1;
+        int len = pairs.length, longestChain = 0;
         Arrays.sort(pairs, (o1, o2) -> {
             return o1[0] - o2[0];
         });
@@ -30,21 +30,15 @@ class Solution {
         if(len <= 1) return 1;
         
         for(int second = 1; second < len; second++) {
-            currLongestChain = 1;
             for(int first = 0; first < second; first++) {
                 if(pairs[first][1] < pairs[second][0]) {
-                    currLongestChain = longestChainDp[second] = Math.max(longestChainDp[second], longestChainDp[first] + 1); 
+                    longestChainDp[second] = Math.max(longestChainDp[second], longestChainDp[first] + 1); 
                 }
             }
             
-            longestChain = Math.max(longestChain, currLongestChain);
-            System.out.printf("currLongestChain: %d; longestChain: %d;\t", currLongestChain, longestChain);
+            longestChain = Math.max(longestChain, longestChainDp[second]);
         }
         
-       /* for(int n: longestChainDp) {
-            longestChain = Math.max(longestChain, n);
-        } */
-        System.out.printf("\n\noutside loop >> longestChainDp: %s; longestChain: %d;\t", Arrays.toString(longestChainDp), longestChain);
         return longestChain;
     }
 }
