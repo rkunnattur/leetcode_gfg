@@ -2,9 +2,7 @@ class Solution {
     
     // TC: O(NLogN)
     public int findLongestChain(int[][] pairs) {
-        Arrays.sort(pairs, (o1, o2) -> {
-            return o1[1] != o2[1] ? o1[1] - o2[1] : o1[0] - o2[0];
-        });
+        Arrays.sort(pairs, (o1, o2) -> o1[1] - o2[1]);
         
         int longestChain = 0, curr = Integer.MIN_VALUE;
 
