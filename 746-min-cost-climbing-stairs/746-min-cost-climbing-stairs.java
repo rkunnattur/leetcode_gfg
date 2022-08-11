@@ -2,14 +2,11 @@ class Solution {
     public int minCostClimbingStairs(int[] cost) {
         int n = cost.length;
         int[] mincost = new int[n+1];
-        //Arrays.fill(mincost, -1);
         
         return minCostClimbingStairsR(cost, mincost, n);
     }
     
     public int minCostClimbingStairsR(int[] cost, int[] mincost, int n) {
-        
-       // if(n < 0) return 0;
             
         if(n <= 1) return 0;
         
