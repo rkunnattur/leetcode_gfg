@@ -2,20 +2,19 @@ class Solution {
     public int climbStairs(int n) {
         int[] ways = new int[n+1];
         
-        //return climbStairsR(n, 0, ways);   
-        return climbStairsI(n, ways);
+        return climbStairsR(n, ways);   
+        //return climbStairsI(n, ways);
     }
     
-    public int climbStairsR(int n, int i, int[] ways) {
-        if(i > n) return 0;
+    public int climbStairsR(int n, int[] ways) {
         
-        if(i == n) return 1;
+        if(n <= 2) return n;
         
-        if(ways[i] > 0) return ways[i];
+        if(ways[n] != 0) return ways[n];
         
-        ways[i] = climbStairsR(n, i+1, ways) + climbStairsR(n, i+2, ways);
+        ways[n] = climbStairsR(n-1, ways) + climbStairsR(n-2, ways);
         
-        return ways[i];
+        return ways[n];
     }
     
     public int climbStairsI(int n, int[] ways) {
