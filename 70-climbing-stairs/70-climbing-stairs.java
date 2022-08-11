@@ -7,12 +7,10 @@ class Solution {
     }
     
     public int climbStairsR(int n, int[] ways) {
-        
         if(n <= 2) return n;
-        
         if(ways[n] != 0) return ways[n];
         
-        ways[n] = climbStairsR(n-1, ways) + climbStairsR(n-2, ways);
+        ways[n] = climbStairsR(n-1, ways) + climbStairsR(n-2, ways); 
         
         return ways[n];
     }
