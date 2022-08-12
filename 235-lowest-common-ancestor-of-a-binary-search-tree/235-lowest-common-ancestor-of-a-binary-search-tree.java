@@ -11,14 +11,14 @@
 
 class Solution {
     
-     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+     public TreeNode lowestCommonAncestorR(TreeNode root, TreeNode p, TreeNode q) {
         
-         return ((root.val - p.val) * (root.val - q.val) < 1) ? root : (p.val < root.val) ? lowestCommonAncestor(root.left, p, q) : lowestCommonAncestor(root.right, p, q);
+         return ((root.val - p.val) * (root.val - q.val) < 1) ? root : (p.val < root.val) ? lowestCommonAncestorR(root.left, p, q) : lowestCommonAncestorR(root.right, p, q);
      
      }
     
     
-    public TreeNode lowestCommonAncestorI(TreeNode root, TreeNode p, TreeNode q) {
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         /* compute root - node values n get product of diff, iff diff -ve return root
             else go lefft or right based on node.val < root.val > left : right
         */
