@@ -1,8 +1,35 @@
 class Solution {
+    
     public int rob(int[] nums) {
-        
         int len = nums.length;
+        int[] houseRobber = new int[len];
+         
+       /* if(len == 1) return nums[0];
+        
+        int maxOf2 = Math.max(nums[0], nums[1]);
+        if(len == 2) return maxOf2;
+         
+        houseRobber[0] = nums[0]; houseRobber[1] = maxOf2; */
+        
+        Arrays.fill(houseRobber, -1);
+        
+        return robR(nums, len, len-1, houseRobber);
+     }
+    
+    public int robR(int[] nums, int len, int idx, int[] houseRobber) {
+        if(idx == 0) return nums[idx];
+        if(idx == 1) return Math.max(nums[idx-1], nums[idx]);
+        
+        if(houseRobber[idx] != -1) return houseRobber[idx];
+        
+        houseRobber[idx] = Math.max(nums[idx] + robR(nums, len, idx-2, houseRobber), robR(nums, len, idx-1, houseRobber)); 
+        
+        return houseRobber[idx];
+    }
+    
+    public int robI(int[] nums, int len) {
         if(len == 1) return nums[0];
+        
         int maxOf2 = Math.max(nums[0], nums[1]);
         if(len == 2) return maxOf2;
         
