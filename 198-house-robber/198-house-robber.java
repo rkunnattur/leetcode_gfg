@@ -13,16 +13,15 @@ class Solution {
         
         Arrays.fill(houseRobber, -1);
         
-        return robR(nums, len, len-1, houseRobber);
+        return robR(nums, len, 0, houseRobber);
      }
     
     public int robR(int[] nums, int len, int idx, int[] houseRobber) {
-        if(idx == 0) return nums[idx];
-        if(idx == 1) return Math.max(nums[idx-1], nums[idx]);
+        if(idx >= len) return 0;
         
         if(houseRobber[idx] != -1) return houseRobber[idx];
         
-        houseRobber[idx] = Math.max(nums[idx] + robR(nums, len, idx-2, houseRobber), robR(nums, len, idx-1, houseRobber)); 
+        houseRobber[idx] = Math.max(nums[idx] + robR(nums, len, idx+2, houseRobber), robR(nums, len, idx+1, houseRobber)); 
         
         return houseRobber[idx];
     }
