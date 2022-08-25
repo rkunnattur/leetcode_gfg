@@ -1,5 +1,6 @@
 class Solution {
      public boolean isPowerOfThree(int n) {
-        return Math.log10(n)/Math.log10(3) % 1 == 0;
+        return Integer.toString(n, 3).matches("^10*$");
+        // return Math.log10(n)/Math.log10(3) % 1 == 0;
     }
 }
