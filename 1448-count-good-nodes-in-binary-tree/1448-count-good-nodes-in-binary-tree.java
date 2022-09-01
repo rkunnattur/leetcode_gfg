@@ -23,12 +23,7 @@ class Solution {
     public int countGoodNodes(TreeNode node, int maxValSoFar) {
         if(node == null) return 0;
         
-        int goodNodes = ((node.val >= maxValSoFar)  ?  1 : 0);
-        
         maxValSoFar = Math.max(maxValSoFar, node.val);
-        goodNodes += countGoodNodes(node.left, maxValSoFar);
-        goodNodes += countGoodNodes(node.right, maxValSoFar);  
-        
-        return goodNodes;
+        return (node.val >= maxValSoFar ? 1 : 0) +                                  this.countGoodNodes(node.left, maxValSoFar) +                            this.countGoodNodes(node.right, maxValSoFar);
     }
 }
