@@ -1,6 +1,7 @@
 class Foo {
     
-    private volatile int runStatus = 1;
+    private AtomicInteger firstJob = new AtomicInteger(0);
+    private AtomicInteger secondJob = new AtomicInteger(0);
 
     public Foo() { }
 
@@ -8,22 +9,22 @@ class Foo {
         // printFirst.run() outputs "first". Do not change or remove this line.
         printFirst.run();
         
-        runStatus = runStatus + 1;
+        firstJob.incrementAndGet();
     }
 
     public void second(Runnable printSecond) throws InterruptedException {
-        while(runStatus != 2) {}
+        while(firstJob.get() != 1) {}
         // printSecond.run() outputs "second". Do not change or remove this line.
         printSecond.run();
         
-        runStatus = runStatus + 1;
+        secondJob.incrementAndGet();
     }
 
     public void third(Runnable printThird) throws InterruptedException {
-        while(runStatus != 3) {}
+        while(secondJob.get() != 1) {}
         // printThird.run() outputs "third". Do not change or remove this line.
         printThird.run();
         
-        runStatus = runStatus + 1; 
+        
     }
 }
