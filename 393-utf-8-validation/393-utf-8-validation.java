@@ -1,7 +1,31 @@
 class Solution {
     
-    // Bit Manipulation
     public boolean validUtf8(int[] data) {
+        int count = 0;
+        for(int i = 0; i <data.length; i++){
+            
+            int x = data[i];
+            
+            if(count == 0){
+                if((x >> 5) == 0b110) count = 1;
+                
+                else if((x >> 4) == 0b1110) count = 2;
+                
+                else if((x >> 3) == 0b11110) count = 3;
+                
+                else if((x >> 7) != 0) return false;
+            } 
+            else {
+                if((x >> 6) != 0b10) return false;
+                count--;
+            }
+        }
+        return (count == 0);
+    }
+    
+    
+    // Bit Manipulation
+    public boolean validUtf82(int[] data) {
         int rbytes = 0;
         for(int i: data) {
             if(rbytes == 0) {
